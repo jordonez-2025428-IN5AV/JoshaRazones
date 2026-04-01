@@ -1,0 +1,152 @@
+/* Configuración General */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Cambiado a min-height para mejor respuesta */
+    background: linear-gradient(180deg, #0b1e3b 0%, #1a4a8e 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    color: #333;
+}
+
+/* Contenedor Principal (Organiza Marcos + Panel) */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* Espacio entre las fotos y el panel */
+    z-index: 10;
+    max-width: 1200px;
+    width: 95%;
+}
+
+/* Estilo de los Marcos de Fotos */
+.photo-frame {
+    background-color: white; /* El contorno blanco */
+    padding: 15px; /* Grosor del contorno */
+    border-radius: 10px; /* Bordes ligeramente suaves */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Sombra para dar profundidad */
+    transition: transform 0.3s ease;
+    max-width: 250px; /* Ancho máximo de la foto */
+    flex-shrink: 0; /* Evita que la foto se encoja mucho en pantallas pequeñas */
+}
+
+/* Imagen dentro del marco */
+.photo-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px; /* Un pequeño borde a la foto en sí */
+    /* Mantiene la proporción de la imagen si decides fijar la altura */
+    /* object-fit: cover; aspect-ratio: 3/4; */ 
+}
+
+/* Ligeros giros para un look "casual" */
+.photo-frame.left {
+    transform: rotate(-5deg);
+}
+
+.photo-frame.right {
+    transform: rotate(5deg);
+}
+
+/* Efecto hover en los marcos */
+.photo-frame:hover {
+    transform: scale(1.05) rotate(0deg); /* Se endereza y agranda un poco */
+    z-index: 11;
+}
+
+/* Panel Central (Actualizado para el nuevo diseño) */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem; /* Un poco más de padding */
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 400px; /* Ancho fijo para el panel */
+    flex-shrink: 0;
+}
+
+h1 {
+    color: #1a4a8e;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+}
+
+.content-box {
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+#reason-text {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #444;
+    transition: opacity 0.3s ease;
+}
+
+/* Botón Estilizado */
+button {
+    background-color: #1a4a8e;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #2663bd;
+    transform: scale(1.05);
+}
+
+/* Estrellas de Fondo (Mismo código anterior) */
+.stars-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle var(--duration) infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* --- Responsive (Para celulares) --- */
+@media (max-width: 900px) {
+    .main-container {
+        flex-direction: column; /* Apila los elementos verticalmente */
+        gap: 20px;
+        overflow-y: auto; /* Permite scroll si el contenido es muy alto */
+        padding: 20px 0;
+    }
+
+    .card {
+        width: 90%; /* El panel ocupa casi todo el ancho */
+        order: -1; /* Pone el panel arriba en celulares */
+    }
+
+    .photo-frame {
+        max-width: 200px; /* Fotos más pequeñas en móvil */
+    }
+}
